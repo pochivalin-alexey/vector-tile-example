@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/css/ol.css" type="text/css">
+    <link href="css/openlayers.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/build/ol.js"></script>
+    <script src="js/config.js"></script>
+    <title>OpenLayers example</title>
+  </head>
+  <body>
+    <div id="map" class="map"></div>
+    <script type="text/javascript">
+      var map = new ol.Map({
+  target: 'map',
+  layers: [
+
+    // new ol.layer.Tile({
+    //   source: new ol.source.OSM(),
+    // }),
+
+    // new ol.layer.MapboxVector({
+    //   styleUrl: 'http://localhost/geojson/style/style.json'
+    // }),
+
+    // new ol.layer.Vector({
+    //   source: new ol.source.Vector({
+    //   // url: "https://openlayers.org/en/latest/examples/data/geojson/countries.geojson",
+    //     url: "http://localhost/geojson/odh_copy.geojson",
+    //   format: new ol.format.GeoJSON(),
+    //   }),
+    // style: new ol.style.Style({
+    // stroke: new ol.style.Stroke({
+    //   color: '#319FD3',
+    //   width: 2,
+    // })
+    // })
+    // }),
+
+    new ol.layer.VectorTile({
+      source: new ol.source.VectorTile({
+        url: config.odh_url,
+      format: new ol.format.MVT(),
+      }),
+    style: new ol.style.Style({
+    stroke: new ol.style.Stroke({
+      color: '#319FD3',
+      width: 2,
+    })
+    })
+    })
+  ],
+  view: new ol.View({
+    //projection: 'EPSG:4326',
+    center: new ol.proj.fromLonLat([37.5, 55.8]),
+    zoom: 10,
+  }),
+});
+    </script>
+  </body>
+</html>
